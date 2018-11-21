@@ -21,16 +21,17 @@
             $('#m').val('');
             return false;
         });
-        socket.on('chat message', function(msg){
-            let messages = $('#messages');
-            messages.append($('<li>').text(msg));
-            console.log('scrolling');
-            console.log(messages);
-            // @todo always scroll to bottom with new message
-            // $(window).scrollTop( messages.offset().top );
-            // $(window).scrollTop();
-            // messages.scrollTop(messages.prop('scrollHeight'));
-        });
+        
+        // socket.on('chat message', function(msg){
+        //     let messages = $('#messages');
+        //     messages.append($('<li>').text(msg));
+        //     console.log('scrolling');
+        //     console.log(messages);
+        //     // @todo always scroll to bottom with new message
+        //     // $(window).scrollTop( messages.offset().top );
+        //     // $(window).scrollTop();
+        //     // messages.scrollTop(messages.prop('scrollHeight'));
+        // });
 
         // @todo grab user value and assign to messages
         socket.on('user', function(user){

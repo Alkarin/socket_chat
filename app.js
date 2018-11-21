@@ -12,6 +12,10 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+// app.get('/custom', function(req, res){
+//     res.sendFile(__dirname + '/views/index.ejs');
+// });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -43,6 +47,7 @@ app.use(function(err, req, res, next) {
 
 io.on('connection', function(socket){
     console.log('a user connected');
+
     socket.on('chat message', function(msg){
         if(msg.length !== 0){
             io.emit('chat message', msg);

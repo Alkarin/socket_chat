@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var test = "/1234asdf";
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get(test, function(req, res, next) {
   res.render('index', { title: 'Express' });
 
     // @todo get user data and io.emit somewhere else
