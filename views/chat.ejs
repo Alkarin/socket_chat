@@ -3,7 +3,7 @@
 <head>
     <title>Socket.IO chat</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" />
 </head>
 <body>
 <ul id="messages"></ul>
@@ -17,10 +17,21 @@
         var socket = io();
         var user = "";
         $('#chat-form').submit(function(){
-            socket.emit('chat message', $('#m').val());
+            try {
+                socket.to('game').emit('chat message', $('#m').val());
+            } catch (e){
+                alert(e);
+            }
+
             $('#m').val('');
             return false;
         });
+
+        // socket.on('connection', function(socket){
+        //     // room = req.query.id; // $_GET["id"]
+        //     // socket.join(room);
+        //     console.log('joined ID: ' + room);
+        // });
         
         socket.on('chat message', function(msg){
             let messages = $('#messages');
