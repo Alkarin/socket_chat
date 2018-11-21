@@ -44,8 +44,11 @@ app.use(function(err, req, res, next) {
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
-        console.log('message: ' + msg);
+        if(msg.length !== 0){
+            io.emit('chat message', msg);
+            console.log('message length: ' + msg.length);
+            console.log('message: ' + msg);
+        }
     });
 
     socket.on('disconnect', function(){

@@ -11,16 +11,30 @@
     <input id="m" autocomplete="off" /><button class="m-send btn btn-sm btn-default">Send</button>
 </form>
 <script src="/socket.io/socket.io.js"></script>
+
 <script>
     $(function () {
         var socket = io();
+        var user = "";
         $('#chat-form').submit(function(){
             socket.emit('chat message', $('#m').val());
             $('#m').val('');
             return false;
         });
         socket.on('chat message', function(msg){
-            $('#messages').append($('<li>').text(msg));
+            let messages = $('#messages');
+            messages.append($('<li>').text(msg));
+            console.log('scrolling');
+            console.log(messages);
+            // @todo always scroll to bottom with new message
+            // $(window).scrollTop( messages.offset().top );
+            // $(window).scrollTop();
+            // messages.scrollTop(messages.prop('scrollHeight'));
+        });
+
+        // @todo grab user value and assign to messages
+        socket.on('user', function(user){
+            this.user = user;
         });
     });
 </script>
